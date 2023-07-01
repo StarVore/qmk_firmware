@@ -40,7 +40,7 @@ enum custom_keycodes {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these hard-coded layouts to save space when using only VIA (+700).
-/* QWERTY
+/* Qwrty
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -60,8 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these
   KC_LCTL,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,					 	  KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN, KC_QUOT,
   KC_LSFT,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_MUTE,	 KC_MPLY, KC_N,	KC_M,	KC_COMM,KC_DOT,	KC_SLSH, KC_RSFT,
 					KC_BSLS,KC_END,KC_HOME,KC_LGUI,	KC_ENT,		 KC_SPC,	 MO(1),	MO(2),  KC_RALT,KC_INS
-),
-/* LOWER
+)
+/* Lower
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | `~   |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  |  F10 | DEL  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these
   KC_LSFT,	KC_Z,	KC_X,	 KC_C,	  KC_TRNS, KC_TRNS, 			KC_MPLY, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_GRV,
 					KC_LGUI, KC_END, KC_HOME, KC_LCTL, KC_ENT, KC_MUTE,		 KC_SPC,	 KC_TRNS, MO(3),   KC_RALT, KC_RCTL
 ),
-/* RAISE/NUMPAD
+/* Numbr
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | F13  | F14  | F15  | F16  | F17  | F18  |                    | F19  | F20  | F21  | F22  | F23  | F24  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -137,13 +137,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			oled_timer = timer_read32();
 		}
 	#endif
-	uint8_t layernumby = 2;
+	uint8_t layernumby = 2;  //this was needed as there was some sort of casting error when trying to pass in 2 to register_code(TG(_))
 	switch (keycode) { //For keycode overrides
 		case SV_NMLK:
 			
             if (record->event.pressed) {
                 register_code(KC_NUM);  // press the numlock key
-                register_code(TG(layernumby));          // toggle to layer 3
+                register_code(TG(layernumby));          // toggle to layer Numbr
             } else {
                 unregister_code(KC_NUM);  // release the num lock key
 				unregister_code(TG(layernumby));
