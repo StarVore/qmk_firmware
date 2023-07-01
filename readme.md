@@ -1,12 +1,10 @@
 # Quantum Mechanical Keyboard Firmware
 
-[![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
-[![Discord](https://img.shields.io/discord/440868230475677696.svg)](https://discord.gg/Uq7gcHh)
-[![Docs Status](https://img.shields.io/badge/docs-ready-orange.svg)](https://docs.qmk.fm)
-[![GitHub contributors](https://img.shields.io/github/contributors/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/pulse/monthly)
-[![GitHub forks](https://img.shields.io/github/forks/qmk/qmk_firmware.svg?style=social&label=Fork)](https://github.com/qmk/qmk_firmware/)
+Please note this firmware is still a work in progress as of Jul-1-2023.
+    * currently working on making customization easier
+    * working on buttoning up the RGB lighting options and configuration
 
-This is a keyboard firmware based on the [tmk\_keyboard firmware](https://github.com/tmk/tmk_keyboard) with some useful features for Atmel AVR and ARM controllers, and more specifically, the [OLKB product line](https://olkb.com), the [ErgoDox EZ](https://ergodox-ez.com) keyboard, and the [Clueboard product line](https://clueboard.co).
+This is a fork of the [QMK Firmware](https://github.com/qmk/qmk_firmware), modified for the [Sofle RGB v2.1 Keyboard](https://josefadamcik.github.io/SofleKeyboard/) created by Josef Adamcik with the RGB version reliant on contributions by Dane Evans. Support for both Pro Micro and Elite-C controller types. Extra features include OLED screen animations and WPM counter, better lighting control and customization, and proper VIA support. The code base for this keyboard was also designed with ease of modifications and customization in mind.
 
 ## Documentation
 
@@ -16,16 +14,28 @@ The docs are powered by [Docsify](https://docsify.js.org/) and hosted on [GitHub
 
 You can request changes by making a fork and opening a [pull request](https://github.com/qmk/qmk_firmware/pulls), or by clicking the "Edit this page" link at the bottom of any page.
 
-## Supported Keyboards
+## Keyboard
 
-* [Planck](/keyboards/planck/)
-* [Preonic](/keyboards/preonic/)
-* [ErgoDox EZ](/keyboards/ergodox_ez/)
-* [Clueboard](/keyboards/clueboard/)
-* [Cluepad](/keyboards/clueboard/17/)
-* [Atreus](/keyboards/atreus/)
+* [Sofle](/keyboards/sofle/) - Original QMK Sofle Keyboard firmware
+* [Sofle RGB v2.1](/keyboards/starvore/sofle) - Modified Sofle QMK firmware built specifically for the Sofle RGB v2.1 (although slight modifications can be used to make it work for other versions)
 
-The project also includes community support for [lots of other keyboards](/keyboards/).
+## Building and flashing
+
+To build the firmware, make sure you have QMK properly setup on your development machine. Next, simply run the following command to compile and flash the firmware to your keyboard's controller. You will need to do this for each half of the Sofle keyboard.
+
+qmk flash -kb starvore/sofle -km via
+
+## Customization
+
+TODO: Finish Writing 'customization' section
+
+### Firmware Customization
+
+Most customization options exist within the file customize.h. Use this file to change things like RGB lighting, layer names, and OLED screen options. 
+
+### Keymap Customization
+
+To edit the keymap, simply edit the keymap.c file. If using VIA, (enabled by default) you can go to [usevia.app](https://usevia.app/) using a Chromium based browser to use a web GUI to edit your keymap. 
 
 ## Maintainers
 
