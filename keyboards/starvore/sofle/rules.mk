@@ -16,7 +16,6 @@ EXTRAKEY_ENABLE = yes			# Audio control and System control (+450)
 MOUSEKEY_ENABLE = no			# Mouse keys (+1482). Not required for trackball usage.
 NKRO_ENABLE = no				# 6KRO by default. NKRO works if enabled (+328)
 COMBO_ENABLE = no				# Tap combo chording (+952)
-#VIA							# VIA_ENABLE with the keymap (+2300). Note: VIA is required as non-via layouts were removed to save space.
 
 OLED_ENABLE = yes				# Must be disabled if OLEDs are not installed (+3608-4774 with pet)
 OLED_DRIVER = SSD1306			# Specify OLED driver

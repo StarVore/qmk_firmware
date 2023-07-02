@@ -22,18 +22,27 @@
 #include "encoder.c"
 
 
+/*
+----------------------------------------------------------------------------------------------------------------------------
+----------- OLED Screen Configuration -------------
+----------------------------------------------------------------------------------------------------------------------------
+*/
+
 
 //#include "oled.c" //Stock OLED code
 //Note that the keyboard animations below take a large amount of space!
 //#include "bongocat.c" //OLED code for Bongocat, original code by foureight84.
 //#include "luna.c" //OLED code for Luna, original code by Hellsingcoder and adapted by Jackasaur.
-#include "snakey.c" //OLED code for Snakey, customized from Luna. If not used, do not use OLED_LOGO in config.h.
+#include "snakey.c" //OLED code for Snakey customized from Luna, define WPM_ENABLED=yes in rules.mk. If not used, do not use OLED_LOGO in config.h.
 //#include "snakey_minimal.c" //OLED code for Snakey, without WPM/related animations to save space. If not used, do not use OLED_LOGO in config.h.
 
+/*
+----------------------------------------------------------------------------------------------------------------------------
+----------- Keymap Configuration -------------
+----------------------------------------------------------------------------------------------------------------------------
+*/
 
-
-extern rgblight_config_t rgblight_config; // To pull layer status for RGBLIGHT
-
+//define custom keycodes/macros
 enum custom_keycodes {
     SV_NMLK
 };
@@ -55,12 +64,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these
  *            `----------------------------------'           '------''---------------------------'
 */
 [0] = LAYOUT(
-  KC_ESC,	KC_1,	KC_2,	KC_3,	KC_4,	KC_5,						  KC_6,	KC_7,	KC_8,	KC_9,	KC_0,	 KC_BSPC,
-  KC_TAB,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	  					  KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	 KC_LBRC,
-  KC_LCTL,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,					 	  KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN, KC_QUOT,
-  KC_LSFT,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_MUTE,	 KC_MPLY, KC_N,	KC_M,	KC_COMM,KC_DOT,	KC_SLSH, KC_RSFT,
-					KC_BSLS,KC_END,KC_HOME,KC_LGUI,	KC_ENT,		 KC_SPC,	 MO(1),	MO(2),  KC_RALT,KC_INS
-)
+  KC_ESC,	KC_1,	KC_2,	KC_3,	KC_4,	KC_5,						  KC_6,	 KC_7,	KC_8,	 KC_9,	 KC_0,	  KC_BSPC,
+  KC_TAB,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	  					  KC_Y,	 KC_U,	KC_I,	 KC_O,	 KC_P,	  KC_LBRC,
+  KC_LCTL,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,					 	  KC_H,	 KC_J,	KC_K,	 KC_L,	 KC_SCLN, KC_QUOT,
+  KC_LSFT,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_MUTE,	 KC_MPLY, KC_N,	 KC_M,	KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
+					KC_BSLS,KC_END,KC_HOME,KC_LGUI,	KC_ENT,		 KC_SPC,  MO(1), MO(2), KC_RALT, KC_INS
+),
 /* Lower
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | `~   |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  |  F10 | DEL  |
@@ -79,8 +88,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these
   KC_ESC,	KC_F1,	KC_F2,	 KC_F3,	  KC_F4,   KC_F5,						 KC_F6,	  KC_F7,   KC_F8,	KC_F9,	 KC_F10,   KC_DEL,
   KC_TAB,	KC_F11,	KC_F12,	 KC_TRNS, KC_TRNS, KC_TRNS,						 KC_Y,	  KC_TRNS, KC_UP,	KC_MINS, KC_EQL,   KC_RBRC,
   KC_CAPS,	KC_A,	KC_S,	 KC_TRNS, KC_F,	   KC_TRNS,				 		 KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_SCLN,  KC_TRNS,
-  KC_LSFT,	KC_Z,	KC_X,	 KC_C,	  KC_TRNS, KC_TRNS, 			KC_MPLY, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_GRV,
-					KC_LGUI, KC_END, KC_HOME, KC_LCTL, KC_ENT, KC_MUTE,		 KC_SPC,	 KC_TRNS, MO(3),   KC_RALT, KC_RCTL
+  KC_LSFT,	KC_Z,	KC_X,	 KC_C,	  KC_TRNS, KC_TRNS, KC_MUTE,	KC_MPLY, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_GRV,
+					KC_LGUI, KC_END, KC_HOME, KC_LCTL,  KC_ENT, 	KC_SPC,  KC_TRNS, MO(3),   KC_RALT, KC_RCTL
 ),
 /* Numbr
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -97,11 +106,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these
  *            `----------------------------------'           '------''---------------------------'
 */
 [2] = LAYOUT(
-  KC_F13,	KC_F14,	 KC_F15,  KC_F16,  KC_F17,	KC_F18,						 		 KC_F19,  KC_F20, KC_F21,  KC_F22, KC_F23,	KC_F24,
-  KC_TAB,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,							 KC_TRNS, KC_P7,  KC_P8,   KC_P9,  KC_TRNS,	KC_TRNS,
-  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,	 						 KC_TRNS, KC_P4,  KC_P5,   KC_P6,  KC_PLUS,  KC_TRNS,
-  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, 					KC_MPLY, KC_P0,	  KC_P1,  KC_P2,   KC_P3,  KC_EQL,	KC_TRNS,
-					 SV_NMLK, KC_TRNS, KC_TRNS, KC_SPC,  KC_PENT, KC_MUTE,	KC_SPC,	 KC_TRNS, MO(3),  KC_RALT, KC_RCTL
+  KC_F13,	KC_F14,	 KC_F15,  KC_F16,  KC_F17,	KC_F18,						 		  	  KC_F19,  KC_F20, KC_F21,  KC_F22, KC_F23,	KC_F24,
+  KC_TAB,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,							  	  KC_TRNS, KC_P7,  KC_P8,   KC_P9,  KC_TRNS,	KC_TRNS,
+  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,	 						  	  KC_TRNS, KC_P4,  KC_P5,   KC_P6,  KC_PLUS,  KC_TRNS,
+  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, KC_MUTE,		KC_MPLY, KC_P0,	  KC_P1,  KC_P2,   KC_P3,  KC_EQL,	KC_TRNS,
+					 SV_NMLK, KC_TRNS, KC_TRNS, KC_SPC,  KC_PENT, 		KC_SPC,	 KC_TRNS, MO(3),  KC_RALT, KC_RCTL
 ),
 /* RGB
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -118,17 +127,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these
  *            `----------------------------------'           '------''---------------------------'
 */
 [3] = LAYOUT(
-  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,						 	 	 KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS,
-  RGB_MOD,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,						 	 	 KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS,
-  RGB_RMOD,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,						 	 	 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, 						KC_MPLY, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-					 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_TOG, KC_MUTE,		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,						 	 	  KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS,
+  RGB_MOD,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,						 	 	  KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS,
+  RGB_RMOD,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS,						 	 	  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS,	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	KC_TRNS, KC_MUTE,		KC_MPLY, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+					 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_TOG, 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 )
 };
 
 void matrix_scan_user(void) {
 	encoder_action_unregister();
 }
+
+/*
+----------------------------------------------------------------------------------------------------------------------------
+----------- Custom Keycode/Macro Configuration -------------
+----------------------------------------------------------------------------------------------------------------------------
+*/
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -138,9 +153,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		}
 	#endif
 	uint8_t layernumby = 2;  //this was needed as there was some sort of casting error when trying to pass in 2 to register_code(TG(_))
+	uint8_t val = rgblight_get_val();
+	uint8_t hue = rgblight_get_hue();
+	uint8_t sat = rgblight_get_sat();
 	switch (keycode) { //For keycode overrides
+		// wasn't able to get this working as intended.
+		// initial goal was to once within layer 2 (Numbr), a key press could then be used within the layer
+		// to enable num-lock, and then also move to the layer instead of momentarily switching to it only while
+		// the MO(2) button is pressed. Pressing this key again would then disable num-lock and go back to layer 1 (Qwrty)
 		case SV_NMLK:
-			
             if (record->event.pressed) {
                 register_code(KC_NUM);  // press the numlock key
                 register_code(TG(layernumby));          // toggle to layer Numbr
@@ -149,6 +170,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				unregister_code(TG(layernumby));
             }
             break;
+		case RGB_VAI:
+			if (record->event.pressed) {
+				
+				//rgblight_increase_val();
+				rgblight_sethsv_range(hue, sat, (val + 10), 0, 71);
+
+
+			}
+			break;
+		case RGB_VAD:
+			if (record->event.pressed) {
+				//rgblight_decrease_val();
+				rgblight_sethsv_range(hue, sat, (val - 10), 0, 71);
+			}
+			break;
+		//for use if using OLED animations like snakey.c
 		#ifdef KEYBOARD_PET // KEYBOARD PET STATUS
 			case KC_LCTL:
 			case KC_RCTL:
@@ -173,46 +210,107 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return true;
 }
 
+/*
+----------------------------------------------------------------------------------------------------------------------------
+----------- RGB Layer Configuration -------------
+----------------------------------------------------------------------------------------------------------------------------
+*/
 
-	layer_state_t layer_state_set_user(layer_state_t state)	//Use for layer lighting. This method uses less space than RGBLIGHT_LAYER_SEGMENTS.
-	{
-		switch (get_highest_layer(state)) { // Change all other LEDs based on layer state as well
-			case 0:
-				//rgblight_sethsv_noeeprom(50,255,80);	//green-blue gradient
-				rgblight_sethsv_noeeprom(115,170,80);	//pale blue gradient
-				break;
-			case 1:
-				rgblight_sethsv_noeeprom(160,255,80);	//blue-magenta gradient
-				break;
-			case 2:
-				rgblight_sethsv_noeeprom(80,255,80);
-				break;
-			case 3:
-				//rgblight_sethsv_noeeprom(118,255,80);	//blue-purple gradient
-				rgblight_sethsv_noeeprom(252,255,80);
-				break;
-		  }
-		return state;
-	}
+// To pull layer status for RGBLIGHT
+extern rgblight_config_t rgblight_config; 
+
+// layer for Qwrty lighting
+const rgblight_segment_t PROGMEM qwrty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0,71, HSV_CYAN}
+);
+// layer for Lower lighting
+const rgblight_segment_t PROGMEM lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0,71, HSV_PURPLE}
+);
+// layer for Numbr lighting
+const rgblight_segment_t PROGMEM numbr_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0,71, HSV_RED}
+);
+// layer for RGB lighting
+const rgblight_segment_t PROGMEM rgb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0,71, HSV_GREEN}
+);
+
+// define array of RGB light layers
+const rgblight_segment_t* const PROGMEM sofle_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+	qwrty_layer,
+	lower_layer,
+	numbr_layer,
+	rgb_layer
+);
+
+// enable the layers
+void keyboard_post_init_user(void) {
+	rgblight_layers = sofle_rgb_layers;
 	
-	bool led_update_user(led_t led_state)	//Lock key status indicators
-	{
-		if(led_state.caps_lock){
-			rgblight_sethsv_range(43,100,170, 28,31); //White-left caps lock indication
-		}
-		 if(led_state.num_lock){
-		 	rgblight_sethsv_range(43,100,170, 4,7); //White-right num lock indication. Since this indicator is inverted, it must be on the master side of the keyboard to shut off properly when the computer is sleeping.
-		 }
-		// if(led_state.scroll_lock){
-		// 	rgblight_sethsv_range(43,100,170, 16,19); //White-middle scroll lock indication
-		// }
-		return true;
-	}
+
+	//rgblight_mode(RGBLIGHT_MODE_STATIC_GRADIENT+8); //Set to static gradient 9 why not
+	
+	layer_move(0); 	//Start on layer 0 (Qwrty)
+}
 
 
-void keyboard_post_init_user(void)
+/*
+----------------------------------------------------------------------------------------------------------------------------
+----------- RGB Layer Change Configuration -------------
+----------------------------------------------------------------------------------------------------------------------------
+*/
+
+//set default layer (Qwrty)
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+	rgblight_set_layer_state(0, layer_state_cmp(state, 0));
+	return state;
+}
+
+// set layer light config when layer is changed
+layer_state_t layer_state_set_user(layer_state_t state)	//Use for layer lighting. This method uses less space than RGBLIGHT_LAYER_SEGMENTS.
 {
-	rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT+8); //Set to static gradient 9
-	
-	layer_move(0); 						//Start on layer0 by default to set LED colours. Can remove to save a very small amount of space.
+	rgblight_set_layer_state(0, layer_state_cmp(state, 0)); // Qwrty
+	rgblight_set_layer_state(1, layer_state_cmp(state, 1)); // Lower
+	rgblight_set_layer_state(2, layer_state_cmp(state, 2)); // Numbr
+	rgblight_set_layer_state(3, layer_state_cmp(state, 3)); // RGB
+
+	// way to change layer light without utilizing RGBLIGHT_LAYER
+	//
+	// switch (get_highest_layer(state)) {
+	// 	case 0: // Qwrty
+	// 		//rgblight_sethsv_noeeprom(50,255,80);	//green-blue gradient
+	// 		//rgblight_sethsv_noeeprom(115,170,80);	//pale blue gradient
+	// 		break;
+	// 	case 1: // Lower
+	// 		rgblight_sethsv_noeeprom(160,255,80);	//blue-magenta gradient
+	// 		break;
+	// 	case 2: // Numbr
+	// 		rgblight_sethsv_noeeprom(80,255,80);
+	// 		break;
+	// 	case 3: // RGB
+	// 		//rgblight_sethsv_noeeprom(118,255,80);	//blue-purple gradient
+	// 		rgblight_sethsv_noeeprom(252,255,80);
+	// 		break;
+	//   }
+	return state;
+}
+
+//Lock key status indicators
+//Lock key lighting should remain on the master side as to properly sleep
+bool led_update_user(led_t led_state)	
+{
+	if(led_state.caps_lock){
+		rgblight_sethsv_range(43,100,170, 28,31); //White-status caps lock indication
+	}
+	// I've seen in some other keyboards and sofle settings that the !inverted status of led_state.num_lock is used
+	//(!(led_state.num_lock))
+	if(led_state.num_lock){
+	 	rgblight_sethsv_range(43,100,170, 4,7); //White-top num lock indication.
+	}
+	// I don't use scroll lock so...
+	// if(led_state.scroll_lock){
+	// 	rgblight_sethsv_range(43,100,170, 16,19); //White-middle scroll lock indication
+	// }
+	return true;
 }

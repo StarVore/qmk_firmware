@@ -32,7 +32,6 @@
 #define LAYER_STATE_8BIT		//For less than 8 bits worth of layers.
 #undef LOCKING_SUPPORT_ENABLE	//For MX lock keys only.
 #undef LOCKING_RESYNC_ENABLE	//For MX lock keys only.
-//#define SUPER_ALT_TAB_ENABLE	//Enable super alt tab custom keycode(+178).
 
 // OLED settings
 #ifdef OLED_ENABLE
@@ -56,13 +55,13 @@
 
 // RGB settings
 #ifdef RGBLIGHT_ENABLE
-	#define WS2812_DI_PIN D3
-	#define RGBLED_NUM 72
-	#define RGBLED_SPLIT {36,36}
-	//#define RGBLIGHT_ANIMATIONS // Very memory intensive (+2604)
+	#define WS2812_DI_PIN D3 // data pin to control RGB
+	#define RGBLED_NUM 72 // number of LEDs
+	#define RGBLED_SPLIT {36,36} // number of LED per half of keyboard
+	//#define RGBLIGHT_ANIMATIONS // Very memory intensive. Would not run with WPM_ENABLE=yes and animated oled settings
 	#define RGBLIGHT_EFFECT_STATIC_GRADIENT //Preferred RGB effect (+262)
 	#define RGBLIGHT_LIMIT_VAL 160 //Power draw may still exceed the USB limitations of 0.6A at max brightness with white colour with this setting.
-	//#define RGBLIGHT_LAYERS //Enable layer light indicators. Not required as updates are done in layer_state_set_user and led_update_user (+588).
+	#define RGBLIGHT_LAYERS //Enable layer light indicators. --Not required as updates are done in layer_state_set_user and led_update_user (+588).
 	#define RGBLIGHT_SLEEP //Turn off LEDs when computer sleeping (+72)
 
 	//RGB LED Conversion macro from physical array to electric array (+146). This results in better looking animated effects.

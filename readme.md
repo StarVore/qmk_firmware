@@ -39,7 +39,7 @@ TODO: Finish Writing 'customization' section
 
 ### Firmware Customization
 
-Most customization options exist within the file [config.h](/keyboards/starvore/sofle/keymaps/via/config.h) within the VIA keymap folder. Use this file to change things like RGB lighting, layer names, and OLED screen options. 
+Most customization options exist within the file [keymap.h](/keyboards/starvore/sofle/keymaps/via/keymap.c) within the VIA keymap folder. Use this file to change things like RGB lighting, layer names, and OLED screen options. 
 
 ### Keymap Customization
 
